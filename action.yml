@@ -8,16 +8,26 @@ branding:
 inputs:
   git-name:
     description: git user name
-    default: I am your father
   git-mail:
     description: git user email
-    default: 121049410+i-amyourfather@users.noreply.github.com
+    
+outputs:
+  token:
+    value: ${{ steps.get_token.outputs.token }}
+    description: An installation token for the GitHub App on the requested repository.
 
 runs:
   using: 'composite'
   steps:
+    - name: Get token
+      id: get_token
+      uses: tibdex/github-app-token@v1
+      with:
+        private_key: ${{ secrets.ACTION_APP_KEY }}
+        app_id: ${{ secrets.ACTION_APP_ID }}
+
     - name: Git config
       shell: sh
       run: |
-        git config --global user.email "${{ inputs.git-mail }}"
-        git config --global user.name "${{ inputs.git-name }}"
+        git config --global user.email "${{ secrets.ACTION_EMAIL }}"
+        git config --global user.name "${{ secrets.ACTION_APP }}[bot]"
