@@ -5,6 +5,16 @@ branding:
   icon: 'scissors'
   color: 'orange'
 
+inputs:
+  app-key:
+    description: github app private key
+  app-id:
+    description: github app id
+  app-email:
+    description: github app noreply email
+  app:
+    description: github app name
+
 outputs:
   token:
     value: ${{ steps.get_token.outputs.token }}
@@ -17,14 +27,11 @@ runs:
       id: get_token
       uses: tibdex/github-app-token@v1
       with:
-        private_key: ${{ secrets.ACTION_APP_KEY }}
-        app_id: ${{ secrets.ACTION_APP_ID }}
+        private_key: ${{ inputs.app-key }}
+        app_id: ${{ inputs.app-id }}
 
     - name: Git config
       shell: sh
-      env:
-        USER: ${{ secrets.ACTION_APP }}[bot]
-        EMAIL: ${{ secrets.ACTION_EMAIL }}
       run: |
-        git config --global user.email "$EMAIL"
-        git config --global user.name "$USER"
+        git config --global user.email "${{ inputs.app }}[bot]"
+        git config --global user.name "${{ inputs.app-email }}"
