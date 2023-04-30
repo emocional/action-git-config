@@ -5,12 +5,6 @@ branding:
   icon: 'scissors'
   color: 'orange'
 
-inputs:
-  git-name:
-    description: git user name
-  git-mail:
-    description: git user email
-    
 outputs:
   token:
     value: ${{ steps.get_token.outputs.token }}
