@@ -26,18 +26,18 @@ runs:
     - name: Print app key and app id
       shell: bash
       run: |
-        echo "Secret key: ${{ secrets.ACTION_APP_KEY }}"
-        echo "Secret id: ${{ secrets.ACTION_APP_ID }}"
+        echo "Secret key: ${{ inputs.app-key }}"
+        echo "Secret id: ${{ inputs.app-id }}"
     
     - name: Get token
       id: get_token
       uses: tibdex/github-app-token@v1
       with:
-        private_key: ${{ secrets.ACTION_APP_KEY }}
-        app_id: ${{ secrets.ACTION_APP_ID }}
+        private_key: ${{ inputs.app-key }}
+        app_id: ${{ inputs.app-id }}
 
     - name: Git config
       shell: sh
       run: |
-        git config --global user.email "${{ secrets.ACTION_EMAIL }}"
-        git config --global user.name "${{ secrets.ACTION_APP }}[bot]"
+        git config --global user.email "${{ inputs.app-email }}"
+        git config --global user.name "${{ inputs.app }}[bot]"
