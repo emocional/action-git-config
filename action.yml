@@ -23,14 +23,6 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - name: Print inputs
-      shell: bash
-      run: |
-        echo "app-key: ${{ inputs.app-key }}"
-        echo "app-id: ${{ inputs.app-id }}"
-        echo "app-email: ${{ inputs.app-email }}"
-        echo "app: ${{ inputs.app }}"
-        
     - name: Get token
       id: get_token
       uses: tibdex/github-app-token@v1
