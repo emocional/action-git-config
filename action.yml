@@ -24,9 +24,10 @@ runs:
   using: 'composite'
   steps:
     - name: Print app key and app id
+      shell: bash
       run: |
-      echo "App key: ${{ inputs.app-key }}"
-      echo "App id: ${{ inputs.app-id }}"
+        echo "App key: ${{ inputs.app-key }}"
+        echo "App id: ${{ inputs.app-id }}"
     
     - name: Get token
       id: get_token
