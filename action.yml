@@ -24,6 +24,7 @@ runs:
   using: 'composite'
   steps:
     - name: Print inputs
+      shell: bash
       run: |
         echo "app-key: ${{ inputs.app-key }}"
         echo "app-id: ${{ inputs.app-id }}"
