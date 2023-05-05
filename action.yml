@@ -23,12 +23,6 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - name: Print app key and app id
-      shell: bash
-      run: |
-        echo "Secret key: ${{ inputs.app-key }}"
-        echo "Secret id: ${{ inputs.app-id }}"
-    
     - name: Get token
       id: get_token
       uses: tibdex/github-app-token@v1
